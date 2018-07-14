@@ -8,7 +8,7 @@ const router=express.Router();
 const crawlNaver=require("../api/crawlNaver.js");
 const crawlDaum=require("../api/crawlDaum.js");
 
-const secret="abcdefg";
+const secret=require("../config/secret.js");
 
 router.post('/naver',(req,res)=>{
     if(req.body.secret===secret){
