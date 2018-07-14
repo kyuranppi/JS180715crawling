@@ -12,12 +12,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api/crawl',crawlRouter);
 
 app.get('/',(req,res)=>{
-    res.end("hello");
+    res.end("rest api server");
 });
-app.get('/testJson',(req,res)=>{
+app.get('/test',(req,res)=>{
     res.json({
         server:'listening',
-        path: '/testJson',
+        path: '/test',
     });
 })
 
