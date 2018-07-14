@@ -8,7 +8,7 @@ const router=express.Router();
 const crawlNaver=require("../api/crawlNaver.js");
 const crawlDaum=require("../api/crawlDaum.js");
 
-const secret=require("../config/secret.js");
+const {secret}=require("../config/secret.js");
 
 router.post('/naver',(req,res)=>{
     if(req.body.secret===secret){
@@ -16,7 +16,7 @@ router.post('/naver',(req,res)=>{
 
         res.json({
             path: 'HTTP POST /naver',
-            crawled: 'true'
+            crawled: true
         });
     }else {
         res.json({
@@ -25,25 +25,49 @@ router.post('/naver',(req,res)=>{
     }
 }).get('/naver',(req,res)=>{
     res.json({
-        path:'HTTP GET /crawlNaver'
+        path:'HTTP GET /naver'
     })
 })
 
-router.get('/daum',(req,res)=>{
-    crawlDaum().then(()=>{return ;});
+router.post('/daum',(req,res)=>{
+    if(req.body.secret===secret){
+        crawlDaum().then(()=>{return ;});
+
+        res.json({
+            path: 'HTTP POST /daum',
+            crawled: true
+        });
+    }else {
+        res.json({
+            path: 'HTTP POST /daum'
+        })
+    }
+}).get('/naver',(req,res)=>{
     res.json({
-        path: 'HTTP GET /daum',
+        path:'HTTP GET /daum'
     })
 })
 
-router.get('/reset',(req,res)=>{
-    Promise.all(
-        [crawlDaum(),crawlNaver()]
-    ).then(()=>console.log("fin"))
-    
+router.post('/reset',(req,res)=>{
+    if(req.body.secret===secret){
+        res.json({
+            path: 'HTTP POST /reset',
+            crawled: true
+        })
+        Promise.all(
+            [crawlDaum(),crawlNaver()]
+        ).then(()=>{
+            console.log("============= fin ============")
+        })
+    }else{
+        res.json({
+            path: 'HTTP POST /reset'
+        })
+    }
+}).get('/reset',(req,res)=>{
     res.json({
         path: 'HTTP GET /reset'
-    })
+    });
 })
 
 router.get('/lists',(req,res)=>{

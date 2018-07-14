@@ -34,7 +34,7 @@ const crawlDaum=()=>{
                         res.json().then(json=>{
                             json.data.map(f=>{
                                 list.push({
-                                    day:i,
+                                    day: [i],
                                     title: f.title,
                                     imgsrc: f.pcThumbnailImage.url
                                 })
@@ -62,13 +62,9 @@ const crawlDaum=()=>{
                 list.map((e,i)=>{
                     const idx=filtered.findIndex((f)=>{return e.title===f.title});
                     if(idx>=0){
-                        filtered[idx].day=[...filtered[idx].day,i]
+                        filtered[idx].day=[...filtered[idx].day,...e.day]
                     }else{
-                        filtered.push({
-                            day:[i],
-                            title: e.title,
-                            imgsrc: e.imgsrc,
-                        });
+                        filtered.push(e);
                     }         
                 });
 
