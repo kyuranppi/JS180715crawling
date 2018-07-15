@@ -1,0 +1,30 @@
+<% include ../partials/header %>
+
+<div class="container mt-3">
+    <h1>Webtoons</h1>
+    <hr class ="my-4">
+    <h2>Naver</h2>
+    <div class="webtoons row">
+        <% webtoons.map(e=>{ %>
+            <% if(e.platform==="naver"){ %>
+            <div class="row mt-1">
+                <img class="ml-3 mr3" src="<%=e.imgsrc%>"
+                alt="<%= e.title %>"/>
+            </div>
+        <% }})%>
+    </div>
+    <hr class ="my-4">
+    <h2>Daum</h2>
+    <div class="webtoons row">
+        <% webtoons.map(e=>{ %>
+            <% if(e.platform==="daum"){ %>
+            <div class="row mt-1">
+                <img class="ml-3 mr3" src="<%=e.imgsrc%>"
+                alt="<%= e.title %>"/>
+            </div> 
+        <%}}) %>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
