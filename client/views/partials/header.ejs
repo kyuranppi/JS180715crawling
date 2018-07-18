@@ -9,11 +9,19 @@
 </head>
 <body>
     <div class="container mt-3">
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="/">Home</a>
-            <div>
+        <nav class="navbar navbar-light bg-light d-flex justify-content-between">
+            <div class="row">
+                <a class="text-dark ml-3 mr-3" href="/">Home</a>
                 <a href="/webtoons" class="text-dark mr-3">Webtoon</a>
-                <a href="/signin" class="btn btn-outline-primary my-2 my-sm-0">SIGN IN</a>
-                <a href="/signup" class="btn btn-outline-success my-2 my-sm-0">SIGN UP</a>
+            </div>
+
+            <div class="row">
+                <% if(info===undefined){ %>
+                    <a href="/signin" class="btn btn-outline-primary my-2 my-sm-0 mr-3">SIGN IN</a>
+                    <a href="/signup" class="btn btn-outline-success my-2 my-sm-0">SIGN UP</a>
+                <% }else{ %>
+                    <a href="#" class="btn btn-outline-primary ml-3 mr-3">Hi <%=info.nickname%></a>
+                    <a href="/signout" class="btn btn-outline-danger ml-3 mr-3">Sign Out</a>
+                <% } %>
             </div>
         </nav>

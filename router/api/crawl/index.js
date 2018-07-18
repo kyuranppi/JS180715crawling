@@ -1,15 +1,15 @@
 const express=require("express");
 const mongoose=require("mongoose");
-const Webtoon=require("../../model/webtoons.js");
+const Webtoon=require("../../../model/webtoons.js");
 
 // const config=require("../config/mongodbUrl.js");
 // const {secret}=require("../../config/secret.js");
-const config=require("../../config");
+const config=require("../../../config");
 
 const router=express.Router();
 
-const crawlNaver=require("./crawl/crawlNaver.js");
-const crawlDaum=require("./crawl/crawlDaum.js");
+const crawlNaver=require("./crawlNaver.js");
+const crawlDaum=require("./crawlDaum.js");
 
 
 router.post('/naver',(req,res)=>{
